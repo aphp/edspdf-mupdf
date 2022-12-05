@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "edspdf-mupdf"
-version = "0.5.3"
+version = "0.1.0"
 description = "MuPdf extractor for EDS-PDF"
 authors = [
     "Perceval Wajsburt <perceval.wajsburt-ext@aphp.fr>",
