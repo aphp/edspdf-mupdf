@@ -69,44 +69,6 @@ Installation:
       - master
       - merge_request
 
-Test documentation:
-  stage: test
-  cache:
-    - key:
-        files:
-          - poetry.lock
-      paths:
-        - .venv
-  before_script:
-    - pip install poetry
-    - poetry install
-  script:
-    - poetry run mkdocs build --site-dir documentation
-  artifacts:
-    paths:
-      - documentation
-  only:
-    refs:
-      - merge_request
-
-pages:
-  stage: pages
-  cache:
-    - key:
-        files:
-          - poetry.lock
-      paths:
-        - .venv
-  before_script:
-    - pip install .
-  script:
-    - poetry run mkdocs build --site-dir public
-  artifacts:
-    paths:
-      - public
-  only:
-    - master
-
 Package:
   stage: package
   before_script:
