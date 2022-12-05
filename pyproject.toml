@@ -1,0 +1,59 @@
+[tool.poetry]
+name = "edspdf-mupdf"
+version = "0.5.3"
+description = "MuPdf extractor for EDS-PDF"
+authors = [
+    "Perceval Wajsburt <perceval.wajsburt-ext@aphp.fr>",
+    "Alice Calliger <alice.calliger-ext@aphp.fr>",
+]
+license = "BSD-3"
+readme = "README.md"
+homepage = "https://github.com/aphp/edspdf/"
+repository = "https://github.com/aphp/edspdf/"
+documentation = "https://aphp.github.io/edspdf/"
+
+[tool.poetry.plugins.edspdf_factory]
+"mupdf-extractor" = "edspdf_mupdf.__init__:MuPdfExtractor"
+
+[tool.poetry.dependencies]
+python = ">3.7.6,<4.0,!=3.8.1"
+edspdf = {path = "/Users/perceval/Development/edspdf"}
+pymupdf = "^1.21.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "22.6.0"
+flake8 = ">=3.0"
+pre-commit = "^2.18.1"
+pytest = "^7.1.1"
+pytest-cov = "^3.0.0"
+
+[tool.interrogate]
+ignore-init-method = true
+ignore-init-module = true
+ignore-magic = false
+ignore-semiprivate = false
+ignore-private = false
+ignore-property-decorators = false
+ignore-module = true
+ignore-nested-functions = false
+ignore-nested-classes = true
+ignore-setters = false
+fail-under = 10
+exclude = ["docs", "build", "tests"]
+verbose = 0
+quiet = false
+whitelist-regex = []
+color = true
+omit-covered-files = false
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+]
+
+[tool.mypy]
+plugins = "pydantic.mypy"
+
+[build-system]
+requires = ["poetry-core", "cython", "setuptools<=63"]
+build-backend = "poetry.core.masonry.api"
