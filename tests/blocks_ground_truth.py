@@ -1,4 +1,4 @@
-from edspdf.models import TextBox, SpannedStyle
+from edspdf.models import SpannedStyle, TextBox
 
 # fmt: off
 pdf_blocks = [

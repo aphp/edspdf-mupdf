@@ -3,7 +3,7 @@ import platform
 
 try:
     if platform.system() == "Darwin":
-        multiprocessing.set_start_method('spawn')
+        multiprocessing.set_start_method("spawn")
 except:
     pass
 
@@ -12,9 +12,7 @@ from typing import Union
 
 import fitz as mupdf
 from edspdf import Component, registry
-from edspdf.models import TextBox, PDFDoc, SpannedStyle
-
-
+from edspdf.models import PDFDoc, SpannedStyle, TextBox
 
 
 @registry.factory.register("mupdf-extractor")

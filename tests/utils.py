@@ -1,6 +1,5 @@
-from pytest import approx as pytest_approx
-
 from edspdf import BaseModel
+from pytest import approx as pytest_approx
 
 
 def is_primitive(x):

@@ -52,7 +52,6 @@ def test_styled_mupdf_aggregation(styles_pdf):
     }
 
 
-
 def test_styled_mupdf_aggregation_letter(letter_pdf):
     extractor = MuPdfExtractor(extract_style=True)
     aggregator = StyledAggregator()
