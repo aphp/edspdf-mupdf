@@ -37,6 +37,8 @@ Running Pytest:
         - .venv
   before_script:
     - pip install poetry
+    - poetry source add gitlab "https://$GITLAB_REGISTRY" --secondary
+    - poetry config http-basic.gitlab gitlab-ci-token "${CI_JOB_TOKEN}"
     - poetry run pip install cython setuptools # because `poetry install` does not correctly build the package
     - poetry install -v
   script:
@@ -64,8 +66,7 @@ Running Pytest:
 Installation:
   stage: test
   script:
-    - apt-get update
-    - pip install .
+    - pip install . --extra-index-url "https://gitlab-ci-token:$CI_JOB_TOKEN@$GITLAB_REGISTRY"
   only:
     refs:
       - main
@@ -75,8 +76,9 @@ Package:
   stage: package
   before_script:
     - pip install poetry
-    - poetry config repositories.gitlab ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/pypi
-    - poetry config http-basic.gitlab gitlab-ci-token ${CI_JOB_TOKEN}
+    - poetry source add gitlab "https://$GITLAB_REGISTRY" --secondary
+    - poetry config repositories.gitlab "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/pypi"
+    - poetry config http-basic.gitlab gitlab-ci-token "${CI_JOB_TOKEN}"
   script:
     - poetry publish --build -r gitlab
   only:
