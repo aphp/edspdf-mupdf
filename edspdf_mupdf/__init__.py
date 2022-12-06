@@ -17,19 +17,18 @@ from edspdf.models import PDFDoc, SpannedStyle, TextBox
 
 @registry.factory.register("mupdf-extractor")
 class MuPdfExtractor(Component[Union[str, PDFDoc], PDFDoc]):
-    """
-    Extractor object. Given a PDF byte stream, produces a list of elements.
-
-    Parameters
-    ----------
-    extract_style : bool
-        Extract style
-    """
-
     def __init__(
         self,
         extract_style: bool = False,
     ):
+        """
+        Extractor object. Given a PDF byte stream, produces a list of elements.
+
+        Parameters
+        ----------
+        extract_style : bool
+            Extract style
+        """
         super().__init__()
 
         self.extract_style = extract_style

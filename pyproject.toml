@@ -28,8 +28,8 @@ pytest = "^7.1.1"
 pytest-cov = "^3.0.0"
 
 [tool.interrogate]
-ignore-init-method = true
-ignore-init-module = true
+ignore-init-method = false
+ignore-init-module = false
 ignore-magic = false
 ignore-semiprivate = false
 ignore-private = false
