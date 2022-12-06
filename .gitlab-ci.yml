@@ -24,7 +24,7 @@ Linting:
     - pre-commit run --all-files
   only:
     refs:
-      - master
+      - main
       - merge_request
 
 Running Pytest:
@@ -58,7 +58,7 @@ Running Pytest:
 
   only:
     refs:
-      - master
+      - main
       - merge_request
 
 Installation:
@@ -68,7 +68,7 @@ Installation:
     - pip install .
   only:
     refs:
-      - master
+      - main
       - merge_request
 
 Package:
