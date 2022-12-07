@@ -48,11 +48,10 @@ class MuPdfExtractor(Component[Union[str, PDFDoc], PDFDoc]):
             PDF document
         """
 
-        if isinstance(doc, bytes):
-            content = doc
+        if not isinstance(doc, PDFDoc):
+            content = bytes(doc)
             doc = PDFDoc(id=str(hash(content)), content=content)
-        else:
-            content = doc.content
+        content = doc.content
 
         mupdf_doc = mupdf.Document(stream=BytesIO(content))
         lines = []
