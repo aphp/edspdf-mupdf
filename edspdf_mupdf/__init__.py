@@ -66,14 +66,17 @@ class MuPdfExtractor(Component[Union[str, PDFDoc], PDFDoc]):
                     text = ""
                     styles = []
                     for span in line["spans"]:
+                        span_text = (
+                            span["text"].encode("utf-8", "ignore").decode("utf-8")
+                        )
                         if len(text) == 0:
-                            text = span["text"].lstrip()
+                            text = span_text.lstrip()
                         else:
-                            text += span["text"]
+                            text += span_text
 
                         if self.extract_style:
                             end = len(text.rstrip())
-                            begin = end - len(span["text"].strip())
+                            begin = end - len(span_text.strip())
                             lower_font = span["font"].lower()
                             styles.append(
                                 SpannedStyle(
