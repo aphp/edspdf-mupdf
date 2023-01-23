@@ -20,6 +20,7 @@ class MuPdfExtractor(Component[Union[str, PDFDoc], PDFDoc]):
     def __init__(
         self,
         extract_style: bool = False,
+        raise_on_error: bool = False,
     ):
         """
         Extractor object. Given a PDF byte stream, produces a list of elements.
@@ -28,10 +29,13 @@ class MuPdfExtractor(Component[Union[str, PDFDoc], PDFDoc]):
         ----------
         extract_style : bool
             Extract style
+        raise_on_error: bool
+            Whether to raise an error when parsing a corrupted PDF (defauts to False)
         """
         super().__init__()
 
         self.extract_style = extract_style
+        self.raise_on_error = raise_on_error
 
     def __call__(self, doc: Union[PDFDoc, bytes]) -> PDFDoc:
         """
@@ -53,7 +57,15 @@ class MuPdfExtractor(Component[Union[str, PDFDoc], PDFDoc]):
             doc = PDFDoc(id=str(hash(content)), content=content)
         content = doc.content
 
-        mupdf_doc = mupdf.Document(stream=BytesIO(content))
+        try:
+            mupdf_doc = mupdf.Document(stream=BytesIO(content))
+        except Exception:
+            if self.raise_on_error:
+                raise
+            doc.lines = []
+            doc.error = True
+            return doc
+
         lines = []
         page_count = 0
         for page_no, page in enumerate(mupdf_doc):

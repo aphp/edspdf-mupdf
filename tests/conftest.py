@@ -39,3 +39,9 @@ def styles_pdf():
 def letter_pdf():
     path = TEST_DIR / "resources" / "letter.pdf"
     return path.read_bytes()
+
+
+@fixture(scope="session")
+def error_pdf():
+    path = TEST_DIR / "resources" / "error.pdf"
+    return path.read_bytes()
