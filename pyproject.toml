@@ -1,35 +1,58 @@
-[tool.poetry]
+[project]
 name = "edspdf-mupdf"
-version = "0.1.2"
-description = "MuPdf extractor for EDS-PDF"
+description = "MuPDF extension for EDS-PDF"
 authors = [
-    "Perceval Wajsburt <perceval.wajsburt-ext@aphp.fr>",
-    "Alice Calliger <alice.calliger-ext@aphp.fr>",
+    { name = "Perceval Wajsburt", email = "perceval.wajsburt-ext@aphp.fr" },
+    { name = "Alice Calliger", email = "alice.calliger-ext@aphp.fr" },
 ]
-license = "BSD-3"
+license = { file = "LICENSE" }
 readme = "README.md"
-homepage = "https://github.com/aphp/edspdf/"
-repository = "https://github.com/aphp/edspdf/"
-documentation = "https://aphp.github.io/edspdf/"
+urls.homepage = "https://github.com/aphp/edspdf/"
+urls.repository = "https://github.com/aphp/edspdf/"
+urls.documentation = "https://aphp.github.io/edspdf/"
+dynamic = ["version"]
+requires-python = ">3.7.6,<4.0,!=3.8.1"
 
-[tool.poetry.plugins.edspdf_factory]
-"mupdf-extractor" = "edspdf_mupdf.__init__:MuPdfExtractor"
+dependencies = [
+    "edspdf>=0.6.3",
+    "pymupdf~=1.21.0",
+    "numpy>=1.0.0"
+]
 
-[tool.poetry.dependencies]
-python = ">3.7.6,<4.0,!=3.8.1"
-edspdf = ">=0.6.3"
-pymupdf = "^1.21.0"
+[project.optional-dependencies]
+dev = [
+    "pre-commit~=2.18.1",
+    "pytest~=7.1.1",
+    "pytest-cov~=3.0.0",
+]
+docs = [
+    "mike~=1.1.2",
+    "mkdocs@git+https://github.com/mkdocs/mkdocs.git@5af8bd30538ff8f0cfb698c8b90c3020da319f92",
+    "mkdocstrings>=0.20.0",
+    "mkdocs-autorefs@git+https://github.com/percevalw/mkdocs-autorefs.git@0652a0031a5402c5abcbac8cf1e846fcadbbacbc",
+    "mkdocs-bibtex~=2.8.14",
+    "mkdocs-gen-files~=0.4.0",
+    "mkdocs-literate-nav~=0.6.0",
+    "mkdocs-material~=9.1.0",
+    "mkdocstrings-python~=0.8.3",
+    "mkdocs-glightbox~=0.3.1",
+    "mkdocs-autorefs~=0.4.1",
+]
 
-[tool.poetry.group.dev.dependencies]
-black = "22.6.0"
-flake8 = ">=3.0"
-pre-commit = "^2.18.1"
-pytest = "^7.1.1"
-pytest-cov = "^3.0.0"
+
+[project.entry-points."edspdf_factories"]
+# Extractors
+"mupdf-extractor" = "edspdf_mupdf:MuPdfExtractor"
+
+[tool.setuptools.dynamic]
+version = { attr = "edspdf_mupdf.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["."]
 
 [tool.interrogate]
-ignore-init-method = false
-ignore-init-module = false
+ignore-init-method = true
+ignore-init-module = true
 ignore-magic = false
 ignore-semiprivate = false
 ignore-private = false
@@ -46,6 +69,12 @@ whitelist-regex = []
 color = true
 omit-covered-files = false
 
+[tool.coverage]
+exclude_lines = [
+    "raise NotImplementedError",
+    "def __repr__",
+]
+
 [tool.pytest.ini_options]
 testpaths = [
     "tests",
@@ -54,6 +83,40 @@ testpaths = [
 [tool.mypy]
 plugins = "pydantic.mypy"
 
+[tool.ruff]
+fix = true
+exclude = [
+    ".git",
+    "__pycache__",
+    "__init__.py",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".venv",
+    "build",
+]
+ignore = []
+line-length = 88
+select = [
+    "E",
+    "F",
+    "W",
+    "I001"
+]
+fixable = ["E", "F", "W", "I"]
+
+[tool.ruff.isort]
+known-first-party = ["edspdf"]
+
+[tool.black]
+force-exclude = "tests/test_styled_aggregation.py"
+
+
 [build-system]
-requires = ["poetry-core", "cython", "setuptools<=63"]
-build-backend = "poetry.core.masonry.api"
+requires = [
+    "setuptools>=42",
+    "wheel",
+    "ninja",
+    "cmake>=3.12",
+    "pybind11>=2.6.2,<3.0.0",
+]
+build-backend = "setuptools.build_meta"

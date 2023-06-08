@@ -28,7 +28,7 @@ $ pip install edspdf-mupdf
 from edspdf import Pipeline
 
 model = Pipeline()
-model.add_pipe('mupdf')
+model.add_pipe('mupdf-extractor')
 
 model(pdf_bytes)
 ```
