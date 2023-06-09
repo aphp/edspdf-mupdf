@@ -7,9 +7,9 @@ authors = [
 ]
 license = { file = "LICENSE" }
 readme = "README.md"
-urls.homepage = "https://github.com/aphp/edspdf/"
-urls.repository = "https://github.com/aphp/edspdf/"
-urls.documentation = "https://aphp.github.io/edspdf/"
+urls.homepage = "https://github.com/aphp/edspdf-mupdf/"
+urls.repository = "https://github.com/aphp/edspdf-mupdf/"
+urls.documentation = "https://aphp.github.io/edspdf-mupdf/"
 dynamic = ["version"]
 requires-python = ">3.7.6,<4.0,!=3.8.1"
 
