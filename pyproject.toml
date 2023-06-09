@@ -14,7 +14,7 @@ dynamic = ["version"]
 requires-python = ">3.7.6,<4.0,!=3.8.1"
 
 dependencies = [
-    "edspdf>=0.6.3",
+    "edspdf>=0.7.0",
     "pymupdf~=1.21.0",
     "numpy>=1.0.0"
 ]
@@ -28,15 +28,14 @@ dev = [
 docs = [
     "mike~=1.1.2",
     "mkdocs@git+https://github.com/mkdocs/mkdocs.git@5af8bd30538ff8f0cfb698c8b90c3020da319f92",
-    "mkdocstrings>=0.20.0",
-    "mkdocs-autorefs@git+https://github.com/percevalw/mkdocs-autorefs.git@0652a0031a5402c5abcbac8cf1e846fcadbbacbc",
-    "mkdocs-bibtex~=2.8.14",
+    "mkdocstrings==0.20.0",
+    "mkdocs-autorefs@git+https://github.com/percevalw/mkdocs-autorefs.git@0.4.1.post0",
     "mkdocs-gen-files~=0.4.0",
     "mkdocs-literate-nav~=0.6.0",
     "mkdocs-material~=9.1.0",
     "mkdocstrings-python~=0.8.3",
     "mkdocs-glightbox~=0.3.1",
-    "mkdocs-autorefs~=0.4.1",
+    "pybtex~=0.24.0",
 ]
 
 

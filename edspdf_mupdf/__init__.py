@@ -10,14 +10,15 @@ except:
     pass
 
 from io import BytesIO
-from typing import Union, Literal
+from typing import Union
+from typing_extensions import Literal
 
 import fitz as mupdf
 
 from edspdf import Pipeline, registry
 from edspdf.structures import Box, Page, PDFDoc, TextBox, TextProperties
 
-__version__ = "0.1.2"
+__version__ = "0.2.0"
 
 
 @registry.factory.register("mupdf-extractor")
@@ -96,7 +97,7 @@ class MuPdfExtractor:
         attribute (defaults to False)
     render_dpi: int
         DPI to use when rendering the page (defaults to 200)
-    sort_mode: SortMode
+    sort_mode: Literal["blocks", "lines", "none"]
         Box sorting mode
 
         - "blocks": sort while keeping blocks of boxes intaxct. Use this mode if you

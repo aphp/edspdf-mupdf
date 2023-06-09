@@ -1,6 +1,6 @@
-![Tests](https://img.shields.io/github/workflow/status/aphp/edspdf-mupdf/Tests%20and%20Linting?label=tests&style=flat-square)
-[![Documentation](https://img.shields.io/github/workflow/status/aphp/edspdf-mupdf/Documentation?label=docs&style=flat-square)](https://aphp.github.io/edspdf/latest/)
-[![PyPI](https://img.shields.io/pypi/v/edspdf?color=blue&style=flat-square)](https://pypi.org/project/edspdf-mupdf/)
+![Tests](https://img.shields.io/github/actions/workflow/status/aphp/edspdf-mupdf/tests.yml?branch=main&label=tests&style=flat-square)
+[![Documentation](https://img.shields.io/github/actions/workflow/status/aphp/edspdf-mupdf/documentation.yml?branch=main&label=docs&style=flat-square)](https://aphp.github.io/edspdf-mupdf/latest/)
+[![PyPI](https://img.shields.io/pypi/v/edspdf-mupdf?color=blue&style=flat-square)](https://pypi.org/project/edspdf-mupdf-mupdf/)
 [![Codecov](https://img.shields.io/codecov/c/github/aphp/edspdf-mupdf?logo=codecov&style=flat-square)](https://codecov.io/gh/aphp/edspdf-mupdf)
 [![DOI](https://zenodo.org/badge/517726737.svg)](https://zenodo.org/badge/latestdoi/517726737)
 
